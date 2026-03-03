@@ -3,158 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SULTANBET216 | الإمبراطورية</title>
+    <title>SULTANBET216 | ULTIMATE SYSTEM</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #f5b905; --dark: #0a0e17; --card-bg: #161b28; --blue: #0052ff; }
-        body { background: var(--dark); color: white; font-family: 'Cairo', sans-serif; margin: 0; padding-bottom: 80px; }
+        :root { --gold: #f5b905; --dark-bg: #0b0e14; --card: #1a1f2b; --blue: #0062ff; }
+        body { background: var(--dark-bg); color: white; font-family: 'Cairo', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* Header & Logo */
-        .header { background: #1c212e; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 24px; font-weight: 900; color: var(--gold); text-shadow: 0 0 10px rgba(245, 185, 5, 0.3); }
-        .admin-btn { background: var(--blue); color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; }
+        /* Navigation & Header */
+        header { background: #161b28; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 26px; font-weight: 900; color: var(--gold); font-style: italic; }
+        .user-stats { display: flex; gap: 10px; align-items: center; }
+        .balance-box { background: #2d3446; padding: 5px 15px; border-radius: 5px; color: var(--gold); font-weight: bold; }
 
-        /* Banner */
-        .hero-banner { background: linear-gradient(45deg, #0052ff, #00c6ff); margin: 15px; padding: 25px; border-radius: 20px; text-align: right; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        /* Main Content */
+        .container { padding: 15px; }
+        .tab-nav { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-bottom: 20px; }
+        .tab-btn { background: var(--card); border: 1px solid #2d3446; color: white; padding: 12px; cursor: pointer; border-radius: 10px; font-weight: bold; }
+        .tab-btn.active { background: var(--blue); border-color: var(--blue); }
 
-        /* Tabs Selection */
-        .tabs { display: flex; justify-content: space-around; background: #161b28; padding: 10px; margin-bottom: 10px; }
-        .tab-item { cursor: pointer; padding: 10px; font-weight: bold; color: #8a94a6; transition: 0.3s; }
-        .tab-item.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        /* Betting Cards */
+        .bet-card { background: var(--card); margin-bottom: 10px; padding: 15px; border-radius: 12px; border-right: 5px solid var(--blue); }
+        .odds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+        .odd-btn { background: #2d3446; border: none; color: white; padding: 10px; border-radius: 5px; cursor: pointer; }
+        .odd-btn:hover { background: var(--gold); color: black; }
 
-        /* Game Cards */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-        .game-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #2d3446; transition: 0.3s; position: relative; }
-        .game-card img { width: 100%; height: 120px; object-fit: cover; }
-        .game-title { padding: 10px; font-size: 14px; text-align: center; }
-        .live-tag { position: absolute; top: 5px; left: 5px; background: red; font-size: 10px; padding: 2px 5px; border-radius: 3px; animation: blink 1s infinite; }
+        /* Casino Area */
+        .casino-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .game-thumb { background: var(--card); border-radius: 15px; overflow: hidden; position: relative; border: 1px solid #333; }
+        .game-thumb img { width: 100%; height: 140px; object-fit: cover; }
+        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--gold); color: black; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: none; }
+        .game-thumb:hover .play-btn { display: block; }
 
-        /* Admin Panel Modal */
-        #admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; padding: 20px; overflow-y: auto; }
-        .admin-box { background: #1c212e; padding: 20px; border-radius: 15px; border: 1px solid var(--gold); }
+        /* Bottom Menu */
+        .bottom-bar { position: fixed; bottom: 0; width: 100%; background: #161b28; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #333; }
+        .nav-link { color: #8a94a6; text-decoration: none; font-size: 13px; text-align: center; }
+        .nav-link.active { color: var(--gold); }
 
-        @keyframes blink { 50% { opacity: 0; } }
-        .nav-bottom { position: fixed; bottom: 0; width: 100%; background: #1c212e; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #2d3446; }
+        /* Admin Overlay */
+        #admin-dash { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; padding: 30px; }
     </style>
 </head>
 <body>
 
-    <div class="header">
+    <header>
         <div class="logo">SULTANBET216</div>
-        <button class="admin-btn" onclick="toggleAdmin()">لوحة التحكم</button>
-    </div>
+        <div class="user-stats">
+            <div class="balance-box" id="userBalance">1000.00 DT</div>
+            <button onclick="toggleAdmin()" style="background:none; border:none; cursor:pointer;">⚙️</button>
+        </div>
+    </header>
 
-    <div class="hero-banner">
-        <h1 style="margin:0">مرحباً بك يا سلطان</h1>
-        <p>بونيس 200% على أول شحن D17</p>
-    </div>
+    <div class="container">
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchPage('sports')">⚽ رياضة</button>
+            <button class="tab-btn" onclick="switchPage('slots')">🎰 سلوتس</button>
+            <button class="tab-btn" onclick="switchPage('live')">🎥 لايف</button>
+        </div>
 
-    <div class="tabs">
-        <div class="tab-item active" onclick="showSection('sports')">⚽ رياضة</div>
-        <div class="tab-item" onclick="showSection('slots')">🎰 سلوتس</div>
-        <div class="tab-item" onclick="showSection('live')">📹 لايف كازينو</div>
-    </div>
+        <div id="page-sports" class="page">
+            <h3 class="gold-text">مباريات لايف الآن</h3>
+            <div id="matchesList">جاري التحميل...</div>
+        </div>
 
-    <div id="section-sports" class="section">
-        <div id="matches-live" style="padding: 10px;">
-            </div>
-    </div>
-
-    <div id="section-slots" class="section" style="display:none">
-        <div class="grid">
-            <div class="game-card" onclick="playDemo('vs20olympgate')">
-                <img src="https://img.etimg.com/thumb/msid-102146904,width-1200,height-900,resizemode-4,imgsize-103310/gates-of-olympus.jpg">
-                <div class="game-title">Gates of Olympus</div>
-            </div>
-            <div class="game-card" onclick="playDemo('vswayslions')">
-                <img src="https://www.pragmaticplay.com/wp-content/uploads/2021/06/5-Lions-Megaways_Thumbnail.png">
-                <div class="game-title">5 Lions Megaways</div>
+        <div id="page-slots" class="page" style="display:none">
+            <div class="casino-grid">
+                <div class="game-thumb" onclick="openGame('vs20olympgate')">
+                    <img src="https://www.pragmaticplay.com/wp-content/uploads/2021/02/Gates-of-Olympus_Thumbnail.png">
+                    <span class="play-btn">إلعب الآن</span>
+                </div>
+                <div class="game-thumb" onclick="openGame('wanted-dead-or-a-wild')">
+                    <img src="https://hacksawgaming.com/storage/games/wanted-dead-or-a-wild/wanted-dead-or-a-wild-thumbnail.jpg">
+                    <span class="play-btn">إلعب الآن</span>
+                </div>
+                <div class="game-thumb" onclick="openGame('vswayslions')">
+                    <img src="https://www.pragmaticplay.com/wp-content/uploads/2021/06/5-Lions-Megaways_Thumbnail.png">
+                    <span class="play-btn">إلعب الآن</span>
+                </div>
+                <div class="game-thumb" onclick="openGame('vswayshamm')">
+                    <img src="https://www.pragmaticplay.com/wp-content/uploads/2020/11/Madame-Destiny-Megaways_Thumbnail.png">
+                    <span class="play-btn">إلعب الآن</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="section-live" class="section" style="display:none">
-        <div class="grid">
-            <div class="game-card" onclick="alert('اتصل بالأدمن لفتح بث Crazy Time')">
-                <div class="live-tag">LIVE</div>
-                <img src="https://www.evolution.com/wp-content/uploads/2020/06/crazy-time-logo.png">
-                <div class="game-title">Crazy Time</div>
-            </div>
-            <div class="game-card">
-                <div class="live-tag">LIVE</div>
-                <img src="https://www.evolution.com/wp-content/uploads/2020/12/lightning-roulette.png">
-                <div class="game-title">Lightning Roulette</div>
-            </div>
+    <div id="admin-dash">
+        <h1 style="color:var(--gold)">👑 لوحة تحكم السلطان</h1>
+        <div style="background:#161b28; padding:20px; border-radius:15px;">
+            <p>المستخدمين النشطين: 452</p>
+            <p>أرباح اليوم: <input type="number" value="1250" id="adminProfit"> DT</p>
+            <button class="tab-btn active" onclick="saveAdmin()">حفظ التعديلات</button>
+            <button class="tab-btn" style="background:red" onclick="toggleAdmin()">خروج</button>
         </div>
     </div>
 
-    <div id="admin-panel">
-        <div class="admin-box">
-            <h2 style="color:var(--gold)">👑 إدارة السلطان ريان</h2>
-            <hr>
-            <p>مجموع اللاعبين: <span id="user-count">1,245</span></p>
-            <p>إجمالي الإيداعات D17: <span id="total-dep">3,500 DT</span></p>
-            <h3>تعديل الـ Odds للمباريات</h3>
-            <input type="text" placeholder="اسم الفريق" id="team-name">
-            <input type="number" placeholder="النسبة (Odd)" id="odd-val">
-            <button class="admin-btn" onclick="alert('تم التعديل بنجاح')">تحديث</button>
-            <br><br>
-            <button class="admin-btn" style="background:red" onclick="toggleAdmin()">إغلاق</button>
-        </div>
-    </div>
-
-    <nav class="nav-bottom">
-        <span onclick="showSection('sports')">🏠 الرئيسية</span>
-        <span onclick="alert('أرسل D17 لرقم: 216XXXXXX')">📥 إيداع</span>
-        <span onclick="alert('السحب متاح أيام السبت والأحد')">📤 سحب</span>
+    <nav class="bottom-bar">
+        <a href="#" class="nav-link active">🏠<br>الرئيسية</a>
+        <a href="javascript:void(0)" onclick="alert('أرسل D17 لرقم السلطان: 216XXXXXXXX')" class="nav-link">💰<br>شحن</a>
+        <a href="javascript:void(0)" onclick="alert('اتصل بالدعم للسحب')" class="nav-link">🎁<br>برومو</a>
+        <a href="javascript:void(0)" onclick="toggleAdmin()" class="nav-link">👤<br>الأدمن</a>
     </nav>
 
     <script>
-        // دالة تبديل الأقسام
-        function showSection(id) {
-            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-            document.getElementById('section-' + id).style.display = 'block';
+        // نظام تبديل الصفحات
+        function switchPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.getElementById('page-' + page).style.display = 'block';
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
         }
 
-        // دالة لوحة التحكم
+        // لوحة التحكم بكلمة سر
         function toggleAdmin() {
-            let pass = prompt("أدخل كلمة سر السلطان:");
-            if(pass === "1234") { // كلمة السر الافتراضية
-                const panel = document.getElementById('admin-panel');
-                panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-            } else {
-                alert("خاطئ! لست السلطان ريان.");
-            }
+            let pass = prompt("كلمة سر السلطان:");
+            if(pass === "sultan2026") {
+                let dash = document.getElementById('admin-dash');
+                dash.style.display = (dash.style.display === 'block') ? 'none' : 'block';
+            } else { alert("خاطئ!"); }
         }
 
-        // جلب الماتشوات أوتوماتيكياً (API)
+        // جلب الماتشوات أوتوماتيكياً
         const apiKey = '09228965768e7346808794829774653e';
-        async function loadMatches() {
+        async function fetchLive() {
             try {
                 const res = await fetch(`https://api.the-odds-api.com/v4/sports/soccer/odds/?apiKey=${apiKey}&regions=eu`);
                 const data = await res.json();
                 let html = '';
                 data.slice(0, 10).forEach(m => {
                     html += `
-                    <div style="background:#1c212e; margin-bottom:10px; padding:15px; border-radius:10px; border-left:4px solid var(--gold)">
-                        <small style="color:#8a94a6">${m.sport_title}</small>
-                        <div style="margin:5px 0">${m.home_team} vs ${m.away_team}</div>
-                        <div style="display:flex; gap:10px">
-                            <button class="admin-btn" style="background:#2d3446">1: ${m.bookmakers[0].markets[0].outcomes[0].price}</button>
-                            <button class="admin-btn" style="background:#2d3446">X: ${m.bookmakers[0].markets[0].outcomes[2].price}</button>
-                            <button class="admin-btn" style="background:#2d3446">2: ${m.bookmakers[0].markets[0].outcomes[1].price}</button>
-                        </div>
-                    </div>`;
+                        <div class="bet-card">
+                            <small>${m.sport_title}</small>
+                            <div style="font-weight:bold; margin:10px 0;">${m.home_team} - ${m.away_team}</div>
+                            <div class="odds-grid">
+                                <button class="odd-btn" onclick="placeBet('${m.home_team}', ${m.bookmakers[0].markets[0].outcomes[0].price})">1<br>${m.bookmakers[0].markets[0].outcomes[0].price}</button>
+                                <button class="odd-btn" onclick="placeBet('Draw', ${m.bookmakers[0].markets[0].outcomes[2].price})">X<br>${m.bookmakers[0].markets[0].outcomes[2].price}</button>
+                                <button class="odd-btn" onclick="placeBet('${m.away_team}', ${m.bookmakers[0].markets[0].outcomes[1].price})">2<br>${m.bookmakers[0].markets[0].outcomes[1].price}</button>
+                            </div>
+                        </div>`;
                 });
-                document.getElementById('matches-live').innerHTML = html;
-            } catch (e) { console.log("خطأ في جلب الماتشوات"); }
+                document.getElementById('matchesList').innerHTML = html;
+            } catch (e) { document.getElementById('matchesList').innerHTML = "تحقق من الإنترنت..."; }
         }
 
-        function playDemo(gameSymbol) {
-            window.open(`https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=${gameSymbol}&lang=ar&cur=USD`);
+        // نظام المراهنة
+        let balance = 1000.00;
+        function placeBet(team, odd) {
+            let amount = prompt(`قداش تحب تراهن على ${team}؟ (الربح الممكن: ${amount * odd} DT)`);
+            if (amount && amount <= balance) {
+                balance -= amount;
+                document.getElementById('userBalance').innerText = balance.toFixed(2) + " DT";
+                alert(`تم قبول الرهان على ${team}!`);
+            } else { alert("الرصيد غير كافي أو خطأ في المبلغ"); }
         }
 
-        loadMatches();
+        // فتح الألعاب
+        function openGame(slug) {
+            let url = "";
+            if(slug === 'wanted-dead-or-a-wild') url = "https://demo.hacksawgaming.com/wanted-dead-or-a-wild";
+            else url = `https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=${slug}&lang=ar&cur=USD`;
+            window.open(url, '_blank');
+        }
+
+        fetchLive();
     </script>
 </body>
 </html>
