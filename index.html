@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultanbet 216</title>
+    <style>
+        :root { --gold: #d4af37; --dark: #0a0a0a; }
+        body { background: var(--dark); color: white; font-family: sans-serif; text-align: center; margin: 0; padding-bottom: 50px; }
+        .header { background: #000; padding: 25px; border-bottom: 3px solid var(--gold); font-size: 28px; font-weight: bold; color: var(--gold); }
+        .card { background: #1a1a1a; border: 1px solid #333; border-radius: 20px; margin: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .match { background: #222; padding: 15px; border-radius: 12px; margin: 10px 0; display: flex; justify-content: space-between; align-items: center; border-right: 5px solid var(--gold); }
+        .odds { background: var(--gold); color: black; padding: 8px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .slot-machine { font-size: 65px; margin: 25px 0; background: #000; padding: 20px; border-radius: 15px; border: 2px dashed var(--gold); }
+        .btn-spin { background: linear-gradient(145deg, #ffd700, #b8860b); color: black; border: none; padding: 18px 50px; border-radius: 50px; font-size: 22px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="header">👑 إمبراطورية السلطان ريان 👑</div>
+    
+    <div class="card">
+        <h2 style="color: var(--gold);">⚽ مراهنات كرة القدم</h2>
+        <div class="match">
+            <span>الترجي 🇹🇳 - الأهلي 🇪🇬</span>
+            <div><span class="odds">1.90</span> <span class="odds">3.25</span> <span class="odds">4.10</span></div>
+        </div>
+        <div class="match">
+            <span>ريال مدريد 🇪🇸 - مان سيتي 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+            <div><span class="odds">2.45</span> <span class="odds">3.60</span> <span class="odds">2.15</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 style="color: var(--gold);">🎰 كازينو الحظ الملكي</h2>
+        <div class="slot-machine" id="slots">🎰 🎰 🎰</div>
+        <button class="btn-spin" onclick="spin()">إضرب الحظ!</button>
+    </div>
+
+    <script>
+        function spin() {
+            const symbols = ['💎', '⚽', '💰', '7️⃣', '🌟', '👑'];
+            const r = () => symbols[Math.floor(Math.random() * symbols.length)];
+            document.getElementById('slots').innerText = r() + " " + r() + " " + r();
+        }
+    </script>
+</body>
+</html>
