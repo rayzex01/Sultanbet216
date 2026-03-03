@@ -2,228 +2,221 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>SULTANBET216 | OFFICIAL</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SULTANBET216 | THE ULTIMATE EMPIRE</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* CSS المهندسين - نظام معقد جداً */
         :root {
-            --gold: #ffcc00; --dark-bg: #080a0f; --card-bg: #151921; 
-            --blue: #0062ff; --red: #ff3e3e; --green: #00ff7f;
+            --sultan-gold: #ffcc00; --sultan-black: #050608; --sultan-card: #11141b;
+            --sultan-blue: #0066ff; --neon-glow: 0 0 15px rgba(255, 204, 0, 0.6);
         }
 
-        /* التصميم الأساسي - CSS عملاق ومفصل */
-        body { 
-            background: var(--dark-bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; padding-bottom: 80px; -webkit-font-smoothing: antialiased;
+        body { background: var(--sultan-black); color: white; font-family: 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; }
+
+        /* الأنيميشن السحابي */
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; filter: blur(50px); opacity: 0.3; }
+
+        /* الهيدر الإمبراطوري */
+        .sultan-header {
+            background: rgba(17, 20, 27, 0.95); backdrop-filter: blur(15px);
+            padding: 20px; border-bottom: 2px solid var(--sultan-gold);
+            display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000;
         }
 
-        header {
-            background: linear-gradient(to bottom, #1a1f2b, #0d1117);
-            padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 10000;
+        .balance-pill {
+            background: linear-gradient(90deg, #1e2533, #11141b);
+            border: 1px solid var(--sultan-gold); border-radius: 50px; padding: 5px 20px;
+            box-shadow: var(--neon-glow); font-weight: 900; color: var(--sultan-gold);
         }
 
-        .logo { font-size: 22px; font-weight: 900; color: var(--gold); font-style: italic; text-shadow: 0 0 10px rgba(255,204,0,0.5); }
-
-        .balance-card {
-            background: rgba(255,255,255,0.05); padding: 5px 15px; border-radius: 50px;
-            border: 1px solid var(--gold); font-weight: bold; color: var(--gold);
+        /* نظام الأقسام المتعددة */
+        .mega-nav { display: flex; overflow-x: auto; padding: 15px; gap: 15px; scrollbar-width: none; }
+        .nav-card {
+            min-width: 120px; background: var(--sultan-card); padding: 15px; border-radius: 15px;
+            text-align: center; border: 1px solid #2d3446; cursor: pointer; transition: 0.4s;
         }
+        .nav-card.active { border-color: var(--sultan-gold); background: var(--sultan-blue); }
 
-        /* نظام التبويبات (Tabs) - مصلح 100% */
-        .main-nav { display: flex; overflow-x: auto; background: var(--card-bg); padding: 10px; gap: 10px; }
-        .nav-btn {
-            background: #252a36; border: none; color: white; padding: 10px 25px;
-            border-radius: 10px; cursor: pointer; white-space: nowrap; font-weight: bold;
-        }
-        .nav-btn.active { background: var(--gold); color: black; }
-
-        /* الكازينو - تصحيح الصور */
+        /* كروت الألعاب - نظام الجرافيك المطور */
         .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
-        .game-box {
-            background: var(--card-bg); border-radius: 15px; overflow: hidden;
-            border: 1px solid #2d3446; position: relative; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5); height: 180px;
+        .game-item {
+            position: relative; border-radius: 20px; overflow: hidden; border: 1px solid #2d3446;
+            height: 200px; transition: 0.5s; cursor: pointer;
         }
-        .game-box img { width: 100%; height: 100%; object-fit: cover; }
-        .game-label {
-            position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.8);
-            padding: 8px; text-align: center; font-size: 12px; font-weight: bold;
-        }
+        .game-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); }
+        .game-item:hover { transform: scale(1.05); border-color: var(--sultan-gold); box-shadow: var(--neon-glow); }
+        .game-badge { position: absolute; top: 10px; right: 10px; background: red; padding: 2px 8px; border-radius: 5px; font-size: 10px; font-weight: bold; }
 
-        /* الماتشوات - نظام أوتوماتيكي بديل */
-        .match-card {
-            background: var(--card-bg); margin: 15px; padding: 15px; border-radius: 12px;
-            border-right: 4px solid var(--blue);
+        /* نظام المراهنات الحي - الخوارزمية */
+        .live-bet-box {
+            background: var(--sultan-card); margin: 15px; border-radius: 20px; padding: 20px;
+            border-left: 5px solid var(--sultan-blue);
         }
-        .odd-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .odd-box {
-            background: #252a36; padding: 10px; border-radius: 8px; text-align: center;
-            cursor: pointer; border: 1px solid #363c4d;
+        .odd-btn-group { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .odd-btn {
+            background: #1e2533; border: 1px solid #363c4d; color: white; padding: 12px;
+            border-radius: 12px; transition: 0.2s; font-weight: bold;
         }
-        .odd-box:hover { background: var(--blue); }
-        .odd-box b { display: block; color: var(--gold); font-size: 18px; }
+        .odd-btn:hover { background: var(--sultan-gold); color: black; }
 
-        /* Footer */
-        .footer {
-            position: fixed; bottom: 0; width: 100%; background: #121620;
-            display: flex; justify-content: space-around; padding: 15px 0;
-            border-top: 1px solid #2d3446; z-index: 1000;
+        /* الـ Footer الذكي */
+        .sultan-footer {
+            position: fixed; bottom: 0; width: 100%; background: #0d1117;
+            display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid #2d3446;
         }
-        .foot-link { color: #8a94a6; text-decoration: none; text-align: center; font-size: 12px; }
-        .foot-link.active { color: var(--gold); }
+        .footer-link { color: #8a94a6; text-decoration: none; text-align: center; font-size: 11px; }
+        .footer-link.active { color: var(--sultan-gold); }
 
-        /* الشاشة السوداء للألعاب (Modal) */
-        .game-overlay {
-            display: none; position: fixed; inset: 0; background: black; z-index: 99999;
-        }
-        .close-btn {
-            position: absolute; top: 10px; left: 10px; background: red; color: white;
-            border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer;
+        /* الـ Modal الخارق للألعاب */
+        #game-engine-overlay {
+            display: none; position: fixed; inset: 0; background: #000; z-index: 10000;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">SULTANBET216</div>
-    <div class="balance-card">
-        <span id="myBal">2,500.00</span> <small>DT</small>
-    </div>
-</header>
+<canvas id="bg-canvas"></canvas>
 
-<div class="main-nav">
-    <button class="nav-btn active" onclick="showPage('sports', this)">⚽ مراهنات</button>
-    <button class="nav-btn" onclick="showPage('casino', this)">🎰 كازينو</button>
-    <button class="nav-btn" onclick="showPage('live', this)">📽️ لايف كازينو</button>
+<div class="sultan-header">
+    <div style="font-size: 24px; font-weight: 900; color: var(--sultan-gold);">SULTAN<span style="color:white">BET216</span></div>
+    <div class="balance-pill" id="displayBalance">50,000.00 DT</div>
 </div>
 
-<div id="page-sports" class="page-content">
-    <div id="matches-container">
+<div class="mega-nav">
+    <div class="nav-card active" onclick="switchView('sports')"><i class="fas fa-futbol"></i><br>الرياضة</div>
+    <div class="nav-card" onclick="switchView('casino')"><i class="fas fa-dice"></i><br>الكازينو</div>
+    <div class="nav-card" onclick="switchView('live')"><i class="fas fa-video"></i><br>لايف</div>
+    <div class="nav-card" onclick="openTerminal()"><i class="fas fa-code"></i><br>الأدمن</div>
+</div>
+
+<div id="view-sports">
+    <div id="matches-engine">
         </div>
 </div>
 
-<div id="page-casino" class="page-content" style="display:none;">
+<div id="view-casino" style="display:none;">
     <div class="game-grid">
-        <div class="game-box" onclick="playGame('gates')">
-            <img src="https://www.pragmaticplay.com/wp-content/uploads/2021/02/Gates-of-Olympus_Thumbnail.png" onerror="this.src='https://via.placeholder.com/150?text=Gates+of+Olympus'">
-            <div class="game-label">Gates of Olympus</div>
+        <div class="game-item" onclick="startEngine('vs20olympgate')">
+            <span class="game-badge">HOT</span>
+            <img src="https://www.pragmaticplay.com/wp-content/uploads/2021/02/Gates-of-Olympus_Thumbnail.png">
         </div>
-        <div class="game-box" onclick="playGame('wanted')">
-            <img src="https://hacksawgaming.com/storage/games/wanted-dead-or-a-wild/wanted-dead-or-a-wild-thumbnail.jpg" onerror="this.src='https://via.placeholder.com/150?text=Wanted+Dead+or+Wild'">
-            <div class="game-label">Wanted Dead or Wild</div>
-        </div>
-        <div class="game-box" onclick="playGame('lions')">
-            <img src="https://www.pragmaticplay.com/wp-content/uploads/2021/06/5-Lions-Megaways_Thumbnail.png" onerror="this.src='https://via.placeholder.com/150?text=5+Lions'">
-            <div class="game-label">5 Lions Megaways</div>
-        </div>
-        <div class="game-box" onclick="playGame('madame')">
-            <img src="https://www.pragmaticplay.com/wp-content/uploads/2020/11/Madame-Destiny-Megaways_Thumbnail.png" onerror="this.src='https://via.placeholder.com/150?text=Madame+Destiny'">
-            <div class="game-label">Madame Destiny</div>
+        <div class="game-item" onclick="startEngine('wanted')">
+            <img src="https://hacksawgaming.com/storage/games/wanted-dead-or-a-wild/wanted-dead-or-a-wild-thumbnail.jpg">
         </div>
     </div>
 </div>
 
-<div id="overlay" class="game-overlay">
-    <button class="close-btn" onclick="closeGame()">خروج ❌</button>
-    <iframe id="game-frame" src="" width="100%" height="100%" frameborder="0"></iframe>
+<div id="game-engine-overlay">
+    <div style="padding: 10px; background: #111; display: flex; justify-content: space-between;">
+        <span style="color:var(--sultan-gold)">محرك الألعاب VIP</span>
+        <button onclick="stopEngine()" style="background:red; border:none; color:white; padding:5px 15px; border-radius:5px;">إغلاق ❌</button>
+    </div>
+    <iframe id="global-iframe" src="" width="100%" height="95%" frameborder="0"></iframe>
 </div>
 
-<nav class="footer">
-    <a href="javascript:void(0)" onclick="showPage('sports')" class="foot-link active"><i class="fa fa-home"></i><br>الرئيسية</a>
-    <a href="javascript:void(0)" onclick="alert('أرسل D17 للرقم: 216XXXXXXXX')" class="foot-link"><i class="fa fa-wallet"></i><br>إيداع</a>
-    <a href="javascript:void(0)" onclick="showPage('casino')" class="foot-link"><i class="fa fa-dice"></i><br>كازينو</a>
-    <a href="javascript:void(0)" onclick="openAdmin()" class="foot-link"><i class="fa fa-user-shield"></i><br>الأدمن</a>
+<nav class="sultan-footer">
+    <a href="#" class="footer-link active"><i class="fas fa-home fa-lg"></i><br>الرئيسية</a>
+    <a href="javascript:void(0)" onclick="alert('D17: 216XXXXXXXX')" class="footer-link"><i class="fas fa-wallet fa-lg"></i><br>شحن</a>
+    <a href="javascript:void(0)" onclick="switchView('casino')" class="footer-link"><i class="fas fa-slot-machine fa-lg"></i><br>كازينو</a>
+    <a href="javascript:void(0)" onclick="openTerminal()" class="footer-link"><i class="fas fa-user-crown fa-lg"></i><br>سلطان</a>
 </nav>
 
 <script>
-    // --- برمجة 10,000 سطر ذكاء اصطناعي ---
+    // --- المحرك الإمبراطوري SULTAN-LEGACY JS ---
     
-    let currentBalance = 2500.00;
+    let wallet = 50000.00;
 
-    // 1. نظام الماتشوات (مصلح ليعمل حتى بدون API)
-    const matchesData = [
-        {h: "الترجي التونسي", a: "الأهلي المصري", o1: 2.10, ox: 3.20, o2: 3.50},
-        {h: "ريال مدريد", a: "مانشستر سيتي", o1: 2.45, ox: 3.40, o2: 2.80},
-        {h: "برشلونة", a: "بايرن ميونخ", o1: 3.10, ox: 3.60, o2: 2.15},
-        {h: "ميلان", a: "إنتر ميلان", o1: 2.90, ox: 3.10, o2: 2.60},
-        {h: "ليفربول", a: "أرسنال", o1: 2.00, ox: 3.50, o2: 3.40}
-    ];
+    // 1. نظام الجرافيك (Three.js) - يضيف آلاف العمليات الحسابية في الثانية
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+    const material = new THREE.MeshBasicMaterial({ color: 0xffcc00, wireframe: true });
+    const torus = new THREE.Mesh(geometry, material);
+    scene.add(torus);
+    camera.position.z = 30;
 
-    function loadMatches() {
+    function animateBg() {
+        requestAnimationFrame(animateBg);
+        torus.rotation.x += 0.01; torus.rotation.y += 0.005;
+        renderer.render(scene, camera);
+    }
+    animateBg();
+
+    // 2. خوارزمية توليد الماتشوات أوتوماتيكياً
+    function buildSports() {
+        const teams = ["ريال مدريد", "مانشستر سيتي", "الترجي", "الأهلي", "برشلونة", "بايرن ميونخ", "ميلان", "يوفنتوس"];
         let html = "";
-        matchesData.forEach((m, i) => {
+        for(let i=0; i<10; i++) {
+            let t1 = teams[Math.floor(Math.random()*teams.length)];
+            let t2 = teams[Math.floor(Math.random()*teams.length)];
+            if(t1 === t2) t2 = "باريس سان جيرمان";
             html += `
-            <div class="match-card">
-                <div style="display:flex; justify-content:space-between; font-weight:bold;">
-                    <span>${m.h}</span> <span style="color:var(--gold);">VS</span> <span>${m.a}</span>
+            <div class="live-bet-box">
+                <div style="font-size:12px; color:#8a94a6;">دوري أبطال السلطان • مباشر</div>
+                <div style="display:flex; justify-content:space-between; margin-top:10px; font-weight:900;">
+                    <span>${t1}</span> <span style="color:var(--sultan-gold)">VS</span> <span>${t2}</span>
                 </div>
-                <div class="odd-row">
-                    <div class="odd-box" onclick="bet('${m.h}', ${m.o1})"><span>1</span><b>${m.o1}</b></div>
-                    <div class="odd-box" onclick="bet('X', ${m.ox})"><span>X</span><b>${m.ox}</b></div>
-                    <div class="odd-box" onclick="bet('${m.a}', ${m.o2})"><span>2</span><b>${m.o2}</b></div>
+                <div class="odd-btn-group">
+                    <button class="odd-btn" onclick="placeBet('${t1}', 2.15)">1<br>2.15</button>
+                    <button class="odd-btn" onclick="placeBet('تعادل', 3.40)">X<br>3.40</button>
+                    <button class="odd-btn" onclick="placeBet('${t2}', 3.10)">2<br>3.10</button>
                 </div>
             </div>`;
-        });
-        document.getElementById('matches-container').innerHTML = html;
+        }
+        document.getElementById('matches-engine').innerHTML = html;
     }
 
-    // 2. نظام المراهنة
-    function bet(team, odd) {
-        let amt = prompt(`كم تريد المراهنة على [${team}]؟ (Odd: ${odd})`);
-        if(amt && amt <= currentBalance) {
-            currentBalance -= amt;
-            document.getElementById('myBal').innerText = currentBalance.toFixed(2);
-            alert(`تم قبول الرهان! الربح الممكن: ${(amt * odd).toFixed(2)} DT`);
-        } else {
-            alert("خطأ: رصيد غير كافي أو مبلغ غير صحيح.");
+    // 3. نظام التوجيه
+    function switchView(view) {
+        $(".view-sports, #view-casino").hide(); 
+        if(view === 'sports') $("#view-sports").show();
+        if(view === 'casino') $("#view-casino").show();
+        $(".nav-card").removeClass("active");
+        $(event.currentTarget).addClass("active");
+    }
+
+    // 4. محرك الألعاب VIP
+    function startEngine(id) {
+        let url = id === 'wanted' ? "https://demo.hacksawgaming.com/wanted-dead-or-a-wild" : `https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=${id}&lang=ar&cur=USD`;
+        $("#global-iframe").attr("src", url);
+        $("#game-engine-overlay").fadeIn();
+    }
+
+    function stopEngine() {
+        $("#game-engine-overlay").fadeOut();
+        $("#global-iframe").attr("src", "");
+    }
+
+    // 5. لوحة التحكم (Root Password: sultan216)
+    function openTerminal() {
+        let p = prompt("ACCESS CODE:");
+        if(p === "sultan216") {
+            let n = prompt("NEW BALANCE:");
+            if(n) { wallet = parseFloat(n); updateUI(); }
         }
     }
 
-    // 3. نظام تبديل الصفحات (مصلح 100%)
-    function showPage(pageId, btn) {
-        $(".page-content").hide();
-        $("#page-" + pageId).show();
-        $(".nav-btn").removeClass("active");
-        if(btn) $(btn).addClass("active");
-    }
-
-    // 4. نظام الألعاب (تخدم ديريكت)
-    function playGame(game) {
-        let url = "";
-        if(game === 'gates') url = "https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20olympgate&lang=ar&cur=USD";
-        if(game === 'wanted') url = "https://demo.hacksawgaming.com/wanted-dead-or-a-wild";
-        if(game === 'lions') url = "https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswayslions&lang=ar&cur=USD";
-        if(game === 'madame') url = "https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswayshamm&lang=ar&cur=USD";
-        
-        $("#game-frame").attr("src", url);
-        $("#overlay").fadeIn();
-    }
-
-    function closeGame() {
-        $("#overlay").fadeOut();
-        $("#game-frame").attr("src", "");
-    }
-
-    // 5. نظام الأدمن
-    function openAdmin() {
-        let p = prompt("كلمة سر السلطان:");
-        if(p === "2026") {
-            let newBal = prompt("أدخل الرصيد الجديد:");
-            if(newBal) {
-                currentBalance = parseFloat(newBal);
-                document.getElementById('myBal').innerText = currentBalance.toFixed(2);
-            }
+    function placeBet(t, o) {
+        let a = prompt(`رهان على ${t}:`);
+        if(a && a <= wallet) {
+            wallet -= a; updateUI();
+            alert(`✅ تم قبول الرهان! الربح: ${(a*o).toFixed(2)} DT`);
         }
     }
 
-    // تشغيل المحرك
-    $(document).ready(function() {
-        loadMatches();
-    });
+    function updateUI() { document.getElementById('displayBalance').innerText = wallet.toLocaleString() + " DT"; }
+
+    $(document).ready(() => { buildSports(); updateUI(); });
 </script>
 
 </body>
